@@ -1,0 +1,164 @@
+罐头是1810发明出来的，可是开罐器呢，却在1858年才发明出来。有时就是这样，重要的东西可能迟来一步，但却一定会到。生活和爱情，都是如此
+
+2.16-12-13 by CarmenHu;
+1
+https://jsfiddle.net/reactjs/69z2wepo/
+jsx faddle;网址
+var Hello = React.createClass({
+  render: function() {
+    return <div className="fuck" style={{color:'red'}}>Hello{this.props.title} {this.props.name}</div>;
+  }
+});
+
+ReactDOM.render(
+  <Hello title="胡"  name="World" />,
+  document.getElementById('container')
+);
+
+
+2
+var Hello = React.createClass({
+  render: function() {
+   var oBject={
+   color:'red'
+   };
+    return <div className="fuck" style={oBject}>Hello{this.props.title} {this.props.name}</div>;
+  }
+});
+
+ReactDOM.render(
+  <Hello title="胡"  name="World" />,
+  document.getElementById('container')
+);
+
+
+
+333333333
+var Hello = React.createClass({
+ getInitialState: function(){ // getInitialState 这是Mount 插入之前的状态，
+ alert('init');
+ return {
+ 			 opacity:1.0,
+    fontSize:'12px'
+ };
+
+ },
+  render: function() { // 这是设置参数
+
+    return <div className="fuck" style={oBject}>Hello{this.props.title} {this.props.name}</div>;
+  },
+  componentWillMount:function(){
+  //  这是在创建后会干的事情
+  alert('will');
+  },
+  componentDidMount:function(){
+  alert('did');
+  //这是删除后会干的事情。
+  }
+});
+
+ReactDOM.render(
+  <Hello title="胡"  name="World" />,
+  document.getElementById('container')
+);
+、44444
+var Hello = React.createClass({
+ getInitialState: function(){
+ alert('init');
+ return {
+ 			 opacity:1.0,
+    fontSize:'12px'
+ };
+
+ },
+  render: function() {
+
+    return <div>Hello {this.props.name}</div>;
+  },
+  componentWillMount:function(){
+  alert('will');
+  },
+  componentDidMount:function(){
+  alert('did');
+  }
+});
+
+ReactDOM.render(
+  <Hello title="胡"  name="World" />,
+  document.getElementById('container')
+);
+
+
+关于this 指向问题。
+
+    var Hello = React.createClass({
+     getInitialState: function(){
+     alert('init');
+     return {
+     			 opacity:1.0,
+        fontSize:'50px'
+     };
+
+     },
+      render: function() {
+
+        return <div style={{
+        opacity:this.state,
+        fontSize:this.state.fontSize
+        }}> Hello {this.props.name}</div>;
+      },
+      componentWillMount:function(){
+      alert('will');
+      },
+      componentDidMount:function(){
+      alert('did');
+      var _self=this;
+      window.setTimeout(function(){
+      _self.setState({
+      opacity:0.5,
+      fontSize:'100px'
+      })
+      },1000)
+      }
+    });
+
+    ReactDOM.render(
+      <Hello title="胡"  name="World" />,
+      document.getElementById('container')
+    );
+
+var Hello = React.createClass({
+ getInitialState: function(){
+ alert('init');
+ return {
+ 			 opacity:1.0,
+    fontSize:'50px'
+ };
+
+ },
+  render: function() {
+
+    return <div style={{
+    opacity:this.state,
+    fontSize:this.state.fontSize
+    }}> Hello {this.props.name}</div>;
+  },
+  componentWillMount:function(){
+  alert('will');
+  },
+  componentDidMount:function(){
+  alert('did');
+  window.setTimeout(function(){
+  this.setState({
+  opacity:0.5,
+  fontSize:'100px'
+  })
+  }.bind(this),1000)
+  }
+});
+
+ReactDOM.render(
+  <Hello title="胡"  name="World" />,
+  document.getElementById('container')
+);
+-----------------------------
